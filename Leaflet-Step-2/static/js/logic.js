@@ -13,8 +13,7 @@ d3.json(queryUrl, function(data) {
   d3.json(queryPlatesUrl, function(data){
     var platesData = data.features
   })
-  }
-);
+  });
 
 /////////////
 
@@ -126,8 +125,8 @@ function createMap(earthquakes) {
     center: [
       37.09, -95.71
     ],
-    zoom: 5,
-    layers: [satellitemap, earthquakes]
+    zoom: 4,
+    layers: [satellitemap, earthquakes,tectonicplates]
   });
 
   // Create a layer control
@@ -157,17 +156,17 @@ function createMap(earthquakes) {
   //add legend to myMap
   legend.addTo(myMap);
 
-  // d3.json(queryPlatesUrl, function(platedata) {
-  //     // Adding our geoJSON data, along with style information, to the tectonicplates layer.
-  //     L.geoJson(platedata, {
-  //       color: "orange",
-  //       weight: 2
-  //     })
-  //     .addTo(tectonicplates);
-
-  //     // Then add the tectonicplates layer to the map.
-  //     tectonicplates.addTo(map);
-  //   });
+  d3.json(queryPlatesUrl, function(platedata) {
+        // Adding  geoJSON data, along with style detail to the tectonicplates layer.
+        L.geoJson(platedata, {
+          color: "red",
+          weight: 2
+        })
+        .addTo(tectonicplates);
+  
+        // Then add the tectonicplates layer to the map.
+        tectonicplates.addTo(myMap);
+      });
 
 }
 
