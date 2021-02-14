@@ -9,19 +9,9 @@ d3.json(queryUrl, function(data) {
   console.log(data.features);
   console.log("depth: "+data.features[1].geometry.coordinates[2])
 
-
-  /////////stop here
-  // for (var i = 0; i < data.length; i++) {
-  //   var magnitude = data.features[i].properties.mag;
-
-  //   if (magnitude){
-  //     L.marker([])
-  //   }
-
-
   }
 );
-///////////till here
+
 function createFeatures(earthquakeData) {
 
   // Define a function we want to run once for each feature in the features array
@@ -39,14 +29,13 @@ function createFeatures(earthquakeData) {
     return magnitude*4;
   }
 
-  //function fill color
   function depthColor(depth) {
     switch (true) {
       case depth > 90: return "#DC143C";
       case depth > 70: return "#FF7F50";
       case depth > 50: return "#D2691E";
       case depth > 30: return "#7FFF00";
-      case depth > 10: return "#FFEBCD";
+      case depth > 10: return "#8FBC8F";
       default: return "#7FFFD4";
     }
   }
@@ -136,7 +125,7 @@ function createMap(earthquakes) {
 
     var div = L.DomUtil.create("div","info legend");
     var colorScales = [-10,10,30,50,70,90];
-    var colors = ["#7FFFD4","#FFEBCD","#7FFF00","#D2691E", "#FF7F50","#DC143C"];
+    var colors = ["#7FFFD4","#8FBC8F","#7FFF00","#D2691E", "#FF7F50","#DC143C"];
 
     for (var i = 0; i < colorScales.length; i++) {
       div.innerHTML += "<i style='background: " + colors[i] + "'></i> "
