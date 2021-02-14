@@ -11,16 +11,16 @@ d3.json(queryUrl, function(data) {
 
 
   /////////stop here
-  for (var i = 0; i < data.length; i++) {
-    var magnitude = data.features[i].properties.mag;
+  // for (var i = 0; i < data.length; i++) {
+  //   var magnitude = data.features[i].properties.mag;
 
-    if (magnitude){
-      L.marker([])
-    }
+  //   if (magnitude){
+  //     L.marker([])
+  //   }
 
 
   }
-});
+);
 ///////////till here
 function createFeatures(earthquakeData) {
 
@@ -130,25 +130,21 @@ function createMap(earthquakes) {
   }).addTo(myMap);
 
   //setup legend
-  var legend = L.control( {
-    position: "bottomright"
-  });
+  var legend = L.control( {position: "bottomright"});
   
   legend.onAdd = function(){
 
     var div = L.DomUtil.create("div","info legend");
-    var grades = [-10,10,30,50,70,90];
+    var colorScales = [-10,10,30,50,70,90];
     var colors = ["#7FFFD4","#FFEBCD","#7FFF00","#D2691E", "#FF7F50","#DC143C"];
 
-    for (var i = 0; i < grades.length; i++) {
+    for (var i = 0; i < colorScales.length; i++) {
       div.innerHTML += "<i style='background: " + colors[i] + "'></i> "
-        + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");
+        + colorScales[i] + (colorScales[i + 1] ? "&ndash;" + colorScales[i + 1] + "<br>" : "+");
     }
     console.log(div);
     return div;
   };
-
-
 
   //add legend to myMap
   legend.addTo(myMap);
